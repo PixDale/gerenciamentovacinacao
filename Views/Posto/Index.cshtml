@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WebApplication1.Models.tb_posto>
+
+@{
+    ViewBag.Title = "Lista de Postos";
+}
+
+<h2>Postos de Vacinação</h2>
+
+<p>
+    @Html.ActionLink("Novo Registro", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Cidade
+        </th>
+        <th>
+            Nome
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tb_cidade.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Remover", "Delete", new { id=item.Id }, new { @class = "btn btn-primary" })
+        </td>
+    </tr>
+}
+
+</table>

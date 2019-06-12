@@ -1,0 +1,83 @@
+﻿@model IEnumerable<WebApplication1.Models.tb_vacinacao>
+
+@{
+    ViewBag.Title = "Vacinações";
+}
+
+<h2>Vacinações</h2>
+
+<p>
+    @Html.ActionLink("Novo Registro", "Create", new { @class = "btn btn-primary" })
+</p>
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Lista de Vacinações
+    </div>
+    
+    <div class="card-body">
+        @using (Html.BeginForm(null, null, FormMethod.Get, new { @class = "form-inline" }))
+        {
+            <p>
+                Procurar paciente: @Html.TextBox("SearchString", null, new { @class = "form-control" })
+                <input type="submit" value="Procurar" class="btn btn-outline-primary" />
+            </p>
+        }
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        Funcionário
+                    </th>
+                    <th>
+                        Paciente
+                    </th>
+                    <th>
+                        Vacina
+                    </th>
+                    <th>
+                        Data
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tb_funcionario.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tb_paciente.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tb_vacina.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataVacinacao)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Remover", "Delete", new { id = item.Id }, new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+
+        </table>
+    </div>
+</div>
+
+<script src="~/Content/vendor/datatables/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable({
+            "dom": 'flipt'
+        });
+    });
+</script>

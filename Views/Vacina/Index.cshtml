@@ -1,0 +1,62 @@
+﻿@model IEnumerable<WebApplication1.Models.tb_vacina>
+
+@{
+    ViewBag.Title = "Vacinas";
+}
+
+<h2>Vacinas</h2>
+
+<p>
+    @Html.ActionLink("Novo Registro", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                Qtd Doses
+            </th>
+            <th>
+                Aplicação
+            </th>
+            <th>
+                Descrição
+            </th>
+            <th>
+                Validade
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QtdDoses)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Aplicacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Validade)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) 
+                    @Html.ActionLink("Remover", "Delete", new { id = item.Id }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>

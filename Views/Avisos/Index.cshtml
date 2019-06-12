@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WebApplication1.Models.tb_avisos>
+
+@{
+    ViewBag.Title = "Avisos";
+}
+
+<h2>Avisos</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Paciente
+        </th>
+        <th>
+            Vacinação
+        </th>
+        <th>
+            Mensagem
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tb_paciente.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tb_vacinacao.DataVacinacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mensagem)
+        </td>
+        <td>
+            @Html.ActionLink("Apagar", "Delete", new { id=item.Id }, new { @class = "btn btn-primary" })
+        </td>
+    </tr>
+}
+
+</table>
